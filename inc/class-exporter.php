@@ -273,14 +273,31 @@ class Exporter {
 		$meta     = [];
 
 		foreach ( $this->meta_keys as $key ) {
-			if ( empty( $raw_meta[ $key ] ) ) {
+
+			$raw_values = ! empty( $raw_meta[ $key ] ) ? $raw_meta[ $key ] : [];
+			// Unserialize all the data.
+			$raw_values = array_map( 'maybe_unserialize', $raw_values );
+
+			// No values to pass on?
+			if ( empty( $raw_values ) ) {
 				$meta[ $key ] = null;
 				continue;
-			} elseif ( 1 === count( $raw_meta[ $key ] ) ) {
-				$meta[ $key ] = wp_json_encode( $raw_meta[ $key ][0] );
-			} else {
-				$meta[ $key ] = wp_json_encode( $raw_meta[ $key ] );
 			}
+
+			// Only one value to pass on?
+			if ( 1 === count( $raw_values ) ) {
+
+				if ( is_scalar( $raw_values[0] ) ) {
+					$meta[ $key ] = $raw_values[0];
+				} else {
+					$meta[ $key ] = wp_json_encode( $raw_values[0] );
+				}
+
+				continue;
+			}
+
+			// Pass on all the values.
+			$meta[ $key ] = wp_json_encode( $raw_values );
 		}
 
 		ksort( $meta );
