@@ -1,0 +1,13 @@
+{
+    "name": "ryanshoover/simple-exporter",
+    "description": "Export any post type to a CSV file",
+    "type": "wordpress-plugin",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Ryan Hoover",
+            "email": "ryanshoover@gmail.com"
+        }
+    ],
+    "require": {}
+}
