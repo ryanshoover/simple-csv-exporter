@@ -36,14 +36,18 @@ class Admin {
 		$screen    = get_current_screen();
 		$post_type = get_post_type_object( $screen->post_type );
 
-		$params = [
-			'export'   => 'all',
-			'_wpnonce' => wp_create_nonce( 'export_posts' ),
-		];
+		if ( ! empty( $_SERVER['REQUEST_URI'] ) ) {
+			parse_str( wp_parse_url( $_SERVER['REQUEST_URI'], PHP_URL_QUERY ), $params );
+		} else {
+			parse_str( wp_parse_url( $screen->parent_file, PHP_URL_QUERY ), $params );
+		}
 
-		$junction = stristr( $screen->parent_file, '?' ) ? '&' : '?';
+		$params['export']   = 'all';
+		$params['_wpnonce'] = wp_create_nonce( 'export_posts' );
 
-		$url = '/wp-admin/' . $screen->parent_file . $junction . http_build_query( $params );
+		$path = wp_parse_url( $screen->parent_file, PHP_URL_PATH );
+
+		$url = admin_url( $path . '?' . http_build_query( $params ) );
 
 		?>
 		<div class="alignleft actions">
