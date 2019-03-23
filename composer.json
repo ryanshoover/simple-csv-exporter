@@ -1,5 +1,5 @@
 {
-    "name": "ryanshoover/simple-exporter",
+    "name": "ryanshoover/simple-csv-exporter",
     "description": "Export any post type to a CSV file",
     "type": "wordpress-plugin",
     "license": "GPLv3",
