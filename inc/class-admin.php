@@ -55,14 +55,10 @@ class Admin {
 				href="<?php echo esc_url( $url ); ?>"
 				id="export_posts"
 				class="button"
+				aria-label="<?php esc_html_e( 'Download CSV of filtered posts', 'simple-csv-exporter' ); ?>"
+				title="<?php esc_html_e( 'Download CSV of filtered posts', 'simple-csv-exporter' ); ?>"
 			>
-				<?php
-				printf(
-					// translators: The placeholder is the plural name of the post type.
-					esc_html__( 'Export %s', 'simple-csv-exporter' ),
-					esc_html( $post_type->labels->name )
-				);
-				?>
+				<span class="dashicons dashicons-download" style="line-height: 1.4em"></span>
 			</a>
 		</div>
 		<?php
