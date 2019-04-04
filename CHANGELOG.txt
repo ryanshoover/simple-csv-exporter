@@ -1,0 +1,14 @@
+== Changelog ==
+
+= 1.0.3 =
+* Improve the button UX
+* Fix export of pages
+
+= 1.0.2 =
+* Simplify the admin interface
+
+= 1.0.1 =
+* Fixes typo in the composer name
+
+= 1.0 =
+* Initial release

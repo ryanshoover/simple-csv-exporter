@@ -10,7 +10,7 @@
  * Plugin Name: Simple CSV Exporter
  * Plugin URI:  https://ryan.hoover.ws
  * Description: Export posts from WordPress to CSV files
- * Version:     1.0.0
+ * Version:     1.0.3
  * Author:      ryanshoover
  * Author URI:  https://ryan.hoover.ws
  * Text Domain: simple-csv-exporter
