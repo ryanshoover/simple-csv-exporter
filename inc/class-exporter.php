@@ -209,7 +209,7 @@ class Exporter {
 	 * Add a single post to the CSV.
 	 */
 	protected function row_post() {
-		$post = get_post();
+		$post = get_post( get_the_ID() );
 
 		$core_values = [
 			$post->ID,

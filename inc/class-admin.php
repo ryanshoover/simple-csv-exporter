@@ -58,7 +58,7 @@ class Admin {
 				aria-label="<?php esc_html_e( 'Download CSV of filtered posts', 'simple-csv-exporter' ); ?>"
 				title="<?php esc_html_e( 'Download CSV of filtered posts', 'simple-csv-exporter' ); ?>"
 			>
-				<span class="dashicons dashicons-download" style="line-height: 1.4em"></span>
+				<span class="dashicons dashicons-download" style="line-height: 1.4em"></span>&nbsp;<?php esc_html_e( 'Download' ); ?>
 			</a>
 		</div>
 		<?php
@@ -77,6 +77,10 @@ class Admin {
 		}
 
 		global $wp_query;
+
+		if ( ! $wp_query->is_main_query() ) {
+			return;
+		}
 
 		$exporter = new Exporter( $wp_query );
 
