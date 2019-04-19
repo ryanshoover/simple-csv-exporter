@@ -104,8 +104,9 @@ class Exporter {
 		$core_fields = [
 			'ID',
 			'Title',
-			'Slug',
+			'Link',
 			'Author',
+			'Slug',
 			'Type',
 			'Publish Date',
 			'Modified Date',
@@ -214,8 +215,9 @@ class Exporter {
 		$core_values = [
 			$post->ID,
 			$post->post_title,
-			$post->post_name,
+			get_the_permalink( get_the_ID() ),
 			$this->get_user_name( $post->post_author ),
+			$post->post_name,
 			$post->post_type,
 			$post->post_date,
 			$post->post_modified,
