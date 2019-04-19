@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="dxt">
+	<description>DXT rules based on WPCS</description>
+
+	<!-- Tests generally use a Laravel-style coding system -->
+	<exclude-pattern>tests/*</exclude-pattern>
+
+	<!-- Ignore dependency code -->
+	<exclude-pattern>vendor/*</exclude-pattern>
+
+	<config name="minimum_supported_wp_version" value="4.0"/>
+
+	<rule ref="PHPCompatibility">
+		<config name="testVersion" value="7.2-"/>
+	</rule>
+
+	<rule ref="WordPress-Core"></rule>
+
+	<rule ref="WordPress-Extra">
+		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain"/>
+	</rule>
+
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customEscapingFunctions" type="array" value="wpe_content" />
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.Security.NonceVerification">
+		<properties>
+			<property name="customSanitizingFunctions" type="array" value="sanitize_request" />
+		</properties>
+	</rule>
+
+	<rule ref="WordPress-Docs">
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+	</rule>
+
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+	<rule ref="Generic.Commenting.Todo"/>
+</ruleset>
