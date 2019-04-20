@@ -13,7 +13,7 @@ services:
 
     wpbrowser:
         build:                   ~/code/docker-wp-browser
-        # image:                   ryanshoover/wp-browser:latest
+        image:                   ryanshoover/wp-browser:latest
         links:
             - db:mysql
         volumes:

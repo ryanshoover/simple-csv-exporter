@@ -63,7 +63,7 @@ jobs:
 
             - restore_cache:
                 keys:
-                    - v1-dependencies-{{ checksum "readme.txt" }}
+                    - v1-dependencies-{{ checksum "README.txt" }}
                     - v1-dependencies-
 
             - run:
@@ -81,7 +81,7 @@ jobs:
                     fi
 
             - save_cache:
-                key: v1-dependencies-{{ checksum "readme.txt" }}
+                key: v1-dependencies-{{ checksum "README.txt" }}
                 paths:
                     - node_modules
                     - vendor
