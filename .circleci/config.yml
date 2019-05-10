@@ -14,7 +14,7 @@ jobs:
                 path: test-results
 
     codecept:
-        working_directory:    /var/www/html/wp-content/plugins/simple-csv-exporter
+        working_directory:    /var/www/html
         docker:
             # TODO: Switch to tagged version when stable
             - image:          ryanshoover/wp-browser:latest
@@ -33,12 +33,17 @@ jobs:
                 MYSQL_USER:          wordpress
                 MYSQL_PASSWORD:      wordpress
         steps:
-            - checkout
+            - run:
+                name:         Define project directory
+                command:      echo 'export PROJECT_DIRECTORY="$CIRCLE_WORKING_DIRECTORY/wp-content/plugins/$CIRCLE_PROJECT_REPONAME"' >> $BASH_ENV
+
+            - checkout:
+                path:         $PROJECT_DIRECTORY
 
             - run:
                 name:         Link tests to site root
                 command:      |
-                    ln -s "$PWD/tests" /var/www/html/tests
+                    ln -s "$PROJECT_DIRECTORY/tests" tests
 
             - run:
                 name:         Make sure WordPress is loaded.
