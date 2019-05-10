@@ -33,17 +33,13 @@ jobs:
                 MYSQL_USER:          wordpress
                 MYSQL_PASSWORD:      wordpress
         steps:
-            - run:
-                name:         Define project directory
-                command:      echo 'export PROJECT_DIRECTORY="$CIRCLE_WORKING_DIRECTORY/wp-content/plugins/$CIRCLE_PROJECT_REPONAME"' >> $BASH_ENV
-
             - checkout:
-                path:         $PROJECT_DIRECTORY
+                path:         /var/www/html/wp-content/plugins/simple-csv-exporter
 
             - run:
                 name:         Link tests to site root
                 command:      |
-                    ln -s "$PROJECT_DIRECTORY/tests" tests
+                    ln -s /var/www/html/wp-content/plugins/simple-csv-exporter/tests tests
 
             - run:
                 name:         Make sure WordPress is loaded.
