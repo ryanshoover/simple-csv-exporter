@@ -14,7 +14,7 @@ jobs:
                 path: test-results
 
     codecept:
-        working_directory:    /var/www/html/wp-content/plugins/simple-csv-exporter
+        working_directory:    /var/www/html
         docker:
             # TODO: Switch to tagged version when stable
             - image:          ryanshoover/wp-browser:latest
@@ -33,16 +33,17 @@ jobs:
                 MYSQL_USER:          wordpress
                 MYSQL_PASSWORD:      wordpress
         steps:
-            - checkout
-
-            - run:
-                name:         Make sure WordPress is loaded.
-                command:      /entrypoint.sh
+            - checkout:
+                path:         /var/www/html/wp-content/plugins/simple-csv-exporter
 
             - run:
                 name:         Link tests to site root
                 command:      |
-                    ln -s tests /var/www/html/tests
+                    ln -s /var/www/html/wp-content/plugins/simple-csv-exporter/tests tests
+
+            - run:
+                name:         Make sure WordPress is loaded.
+                command:      /entrypoint.sh
 
             # Run the test scripts
             - run:
@@ -63,7 +64,7 @@ jobs:
 
             - restore_cache:
                 keys:
-                    - v1-dependencies-{{ checksum "readme.txt" }}
+                    - v1-dependencies-{{ checksum "README.txt" }}
                     - v1-dependencies-
 
             - run:
@@ -81,7 +82,7 @@ jobs:
                     fi
 
             - save_cache:
-                key: v1-dependencies-{{ checksum "readme.txt" }}
+                key: v1-dependencies-{{ checksum "README.txt" }}
                 paths:
                     - node_modules
                     - vendor
