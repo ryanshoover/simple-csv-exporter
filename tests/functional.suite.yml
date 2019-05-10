@@ -13,4 +13,4 @@ modules:
         - \Helper\Functional
     config:
         WPBrowser:
-            depends:             WPDb
+            depends: WPDb

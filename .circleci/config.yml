@@ -14,7 +14,7 @@ jobs:
                 path: test-results
 
     codecept:
-        working_directory:    /var/www/html/wp-content/plugins/simple-csv-exporter
+        working_directory:    "/var/www/html/wp-content/plugins/$CIRCLE_PROJECT_REPONAME"
         docker:
             # TODO: Switch to tagged version when stable
             - image:          ryanshoover/wp-browser:latest
@@ -36,13 +36,13 @@ jobs:
             - checkout
 
             - run:
-                name:         Make sure WordPress is loaded.
-                command:      /entrypoint.sh
-
-            - run:
                 name:         Link tests to site root
                 command:      |
-                    ln -s tests /var/www/html/tests
+                    ln -s ./tests /var/www/html/tests
+
+            - run:
+                name:         Make sure WordPress is loaded.
+                command:      /entrypoint.sh
 
             # Run the test scripts
             - run:
