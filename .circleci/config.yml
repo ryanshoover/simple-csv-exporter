@@ -38,7 +38,7 @@ jobs:
             - run:
                 name:         Link tests to site root
                 command:      |
-                    ln -s ./tests /var/www/html/tests
+                    ln -s "$PWD/tests" /var/www/html/tests
 
             - run:
                 name:         Make sure WordPress is loaded.
