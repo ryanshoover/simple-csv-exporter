@@ -2,7 +2,7 @@
 Contributors: ryanshoover
 Tags: csv, export
 Requires at least: 4.0
-Tested up to: 5.1
+Tested up to: 5.2
 Requires PHP: 5.3
 Stable tag: trunk
 License: GPLv3
